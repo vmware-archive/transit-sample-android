@@ -16,9 +16,4 @@ public class Notification {
 
     public boolean enabled;
 
-
-    @Override
-    public String toString() {
-        return String.format("Route: %s, Stop: %s, Time: %s, Enabled %b", route, stop, time, enabled);
-    }
 }

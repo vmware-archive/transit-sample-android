@@ -47,7 +47,7 @@ public class NotificationsFragment extends Fragment {
     public void onCreateOptionsMenu(final Menu menu, final MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.notifications_add, menu);
+        inflater.inflate(R.menu.notifications, menu);
     }
 
     @Override

@@ -42,11 +42,11 @@ public class LauncherActivity extends Activity {
     }
 
     public void launch() {
-        if (!TTCPreferences.isAuthenticated(this)) {
-            AuthenticationActivity.newInstance(this);
-        } else {
+//        if (!TTCPreferences.isAuthenticated(this)) {
+//            AuthenticationActivity.newInstance(this);
+//        } else {
             NotificationsActivity.newInstance(this);
-        }
+//        }
 	}
 
 	private static final class LaunchHandler extends Handler {

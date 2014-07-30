@@ -7,6 +7,7 @@
         android:protectionLevel="signature" />
 
     <uses-permission android:name="io.pivotal.android.push.demo.permission.C2D_MESSAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".TTCApplication"
@@ -46,6 +47,8 @@
 
         <activity android:name=".NotificationsActivity" />
         <activity android:name=".NotificationAddActivity" />
+        <activity android:name=".RoutesActivity" />
+        <activity android:name=".StopsActivity" />
 
         <receiver
             android:name="io.pivotal.android.push.receiver.GcmBroadcastReceiver"
