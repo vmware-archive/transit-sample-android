@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".AuthenticationActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="50dp"
+    android:background="#222">
+
+    <TextView
+        android:id="@+id/authentication_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="@string/app_name"
+        android:textSize="32sp"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/authentication_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_centerInParent="true"
+        android:text="The TTC application requires that you authenticate before proceeding."
+        android:textColor="#aaa"
+        android:gravity="center" />
+
+    <Button
+        android:layout_below="@id/authentication_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onAuthenticateClicked"
+        android:padding="10dp"
+        android:text="Authenticate" />
+
+</RelativeLayout>
