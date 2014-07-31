@@ -12,6 +12,9 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class NotificationsAdapter extends RemoteAdapter<Notification> {
 
@@ -21,6 +24,25 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
 
     protected Type getListType() {
         return new TypeToken<ArrayList<Notification>>(){}.getType();
+    }
+
+    @Override
+    public void onItemsChanged() {
+        final Set<String> tags = getTagsFromNotifications();
+
+        Log.v("ttc", "setupPush: " + tags);
+        TTCApi.setupPush(getContext(), tags);
+    }
+
+    private Set<String> getTagsFromNotifications() {
+        final HashSet<String> tags = new HashSet<String>();
+        final List<Notification> notifications = getItems();
+        for (final Notification notification : notifications) {
+            if (notification.enabled) {
+                tags.add(notification.tag);
+            }
+        }
+        return tags;
     }
 
     @Override

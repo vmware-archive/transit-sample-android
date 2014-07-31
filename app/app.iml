@@ -72,6 +72,7 @@
     <orderEntry type="library" exported="" name="arca-service-1.0-beta.3" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-1.18.0-rc" level="project" />
     <orderEntry type="library" exported="" name="arca-provider-1.0-beta.3" level="project" />
+    <orderEntry type="library" exported="" name="crouton-1.8.4" level="project" />
     <orderEntry type="library" exported="" name="arca-broadcaster-1.0-beta.3" level="project" />
     <orderEntry type="library" exported="" name="play-services-4.2.42" level="project" />
     <orderEntry type="library" exported="" name="google-http-client-jackson2-1.18.0-rc" level="project" />

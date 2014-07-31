@@ -48,8 +48,8 @@ public class NotificationAddFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RequestCode.REQUEST_ROUTE && resultCode == Activity.RESULT_OK) {
-            mRoute = RoutesActivity.getRoute(data).getRoute();
-            mStop = RoutesActivity.getStop(data).getStop();
+            mRoute = RoutesActivity.getRoute(data);
+            mStop = RoutesActivity.getStop(data);
 
             mTextView.setText(mRoute.title + "\n\n" + mStop.title);
         }
@@ -57,17 +57,35 @@ public class NotificationAddFragment extends Fragment {
 
     public Notification getNotification() {
         if (mRoute != null && mStop != null) {
-            final Integer hour = mPickerView.getCurrentHour();
-            final Integer minute = mPickerView.getCurrentMinute();
-
-            final Notification notification = new Notification();
-            notification.time = String.format("%02d%02d", hour, minute);
-            notification.route = mRoute.title;
-            notification.stop = mStop.title;
-            notification.enabled = true;
-            return notification;
+            final int hour = mPickerView.getCurrentHour();
+            final int minute = mPickerView.getCurrentMinute();
+            return createNotification(hour, minute);
         } else {
             return null;
+        }
+    }
+
+    private Notification createNotification(final int hour, final int minute) {
+        final Notification notification = new Notification();
+        notification.tag = getTagFormat(hour, minute);
+        notification.time = getTimeFormat(hour, minute);
+        notification.route = mRoute.title;
+        notification.stop = mStop.title;
+        notification.enabled = true;
+        return notification;
+    }
+
+    private String getTagFormat(final int hour, final int minute) {
+        return String.format("%02d%02d_%s_%s", hour, minute, mRoute.tag, mStop.stopId);
+    }
+
+    private String getTimeFormat(final int hour, final int minute) {
+        if (hour == 0) {
+            return String.format("12:%02d AM", minute);
+        } else if (hour > 12) {
+            return String.format("%d:%02d PM", hour - 12, minute);
+        } else {
+            return String.format("%d:%02d AM", hour, minute);
         }
     }
 

@@ -5,8 +5,7 @@
     </style>
 
     <style name="AppActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">@drawable/background_dark</item>
-        <item name="android:displayOptions">disableHome|showTitle</item>
+        <item name="android:background">@drawable/background_red</item>
     </style>
 
 </resources>

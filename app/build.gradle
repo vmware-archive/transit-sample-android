@@ -18,5 +18,10 @@ dependencies {
     compile 'io.pivotal.android:push:1.0.0'
     compile 'io.pivotal.android:data:1.0.0'
     compile 'com.google.code.gson:gson:2.2.4'
+
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.4') {
+        exclude group: 'com.google.android', module: 'support-v4'
+    }
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

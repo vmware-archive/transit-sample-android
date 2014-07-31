@@ -12,7 +12,6 @@ import io.pivotal.android.push.service.GcmService;
 public class TTCPushService extends GcmService {
 
     public static final int NOTIFICATION_ID = 1;
-    private static final int NOTIFICATION_LIGHTS_COLOUR = 0xff008981;
     private static final int NOTIFICATION_LIGHTS_ON_MS = 500;
     private static final int NOTIFICATION_LIGHTS_OFF_MS = 1000;
 
@@ -29,10 +28,10 @@ public class TTCPushService extends GcmService {
         final PendingIntent contentIntent = PendingIntent.getActivity(this, 0, new Intent(this, NotificationsActivity.class), 0);
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(this)
-                .setLights(NOTIFICATION_LIGHTS_COLOUR, NOTIFICATION_LIGHTS_ON_MS, NOTIFICATION_LIGHTS_OFF_MS)
-                .setSmallIcon(R.drawable.ic_launcher)
-                .setContentTitle("TTC Hackathon")
+                .setLights(R.color.app_primary, NOTIFICATION_LIGHTS_ON_MS, NOTIFICATION_LIGHTS_OFF_MS)
+                .setContentTitle(getResources().getString(R.string.app_name))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(msg))
+                .setSmallIcon(R.drawable.ic_ttc_logo)
                 .setContentIntent(contentIntent)
                 .setContentText(msg);
 

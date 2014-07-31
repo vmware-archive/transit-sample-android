@@ -13,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ProgressBar;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
 public class NotificationsFragment extends Fragment {
 
     private static interface RequestCode {
@@ -37,7 +40,27 @@ public class NotificationsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        mAdapter = new NotificationsAdapter(getActivity());
+        mAdapter = new NotificationsAdapter(getActivity()) {
+
+            @Override
+            public void refresh() {
+                super.refresh();
+                Crouton.makeText(getActivity(), "Loading...", Style.INFO).show();
+            }
+
+            @Override
+            public void sync() {
+                super.sync();
+                Crouton.makeText(getActivity(), "Loading...", Style.INFO).show();
+            }
+
+            @Override
+            public void onItemsChanged() {
+                Crouton.cancelAllCroutons();
+                super.onItemsChanged();
+            }
+        };
+
         mAdapterView.setAdapter(mAdapter);
 
         mAdapter.refresh();

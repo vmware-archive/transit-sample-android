@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+import de.keyboardsurfer.android.widget.crouton.Style;
+
 public class StopsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Stop.List>, AdapterView.OnItemClickListener {
 
     private StopsAdapter mAdapter;
@@ -48,17 +51,20 @@ public class StopsFragment extends Fragment implements LoaderManager.LoaderCallb
 
     @Override
     public Loader<Stop.List> onCreateLoader(final int id, final Bundle args) {
+        Crouton.makeText(getActivity(), "Loading...", Style.INFO).show();
         return new StopsLoader(getActivity(), mRoute.tag);
     }
 
     @Override
     public void onLoadFinished(final Loader<Stop.List> loader, final Stop.List data) {
+        Crouton.cancelAllCroutons();
         mAdapter.clear();
         mAdapter.addAll(data);
     }
 
     @Override
     public void onLoaderReset(final Loader<Stop.List> loader) {
+        Crouton.cancelAllCroutons();
         mAdapter.clear();
     }
 

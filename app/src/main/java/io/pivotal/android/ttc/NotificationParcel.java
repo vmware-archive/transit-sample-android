@@ -16,6 +16,7 @@ public class NotificationParcel implements Parcelable {
         mNotification.route = in.readString();
         mNotification.stop = in.readString();
         mNotification.time = in.readString();
+        mNotification.tag = in.readString();
         mNotification.enabled = in.readInt() == 1;
     }
 
@@ -33,6 +34,7 @@ public class NotificationParcel implements Parcelable {
         dest.writeString(mNotification.route);
         dest.writeString(mNotification.stop);
         dest.writeString(mNotification.time);
+        dest.writeString(mNotification.tag);
         dest.writeInt(mNotification.enabled ? 1 : 0);
     }
 

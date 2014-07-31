@@ -28,10 +28,20 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
         mRemote.setObjectId("my-notifications");
     }
 
+    public Context getContext() {
+        return mContext;
+    }
+
     @Override
     public int getCount() {
         synchronized (mLock) {
             return mItems.size();
+        }
+    }
+
+    public List<T> getItems() {
+        synchronized (mLock) {
+            return mItems;
         }
     }
 
@@ -91,8 +101,11 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
             }
             Log.v("ttc", "setItems - notifyDataSetChanged");
             notifyDataSetChanged();
+            onItemsChanged();
         }
     }
+
+    public abstract void onItemsChanged();
 
     protected abstract Type getListType();
 

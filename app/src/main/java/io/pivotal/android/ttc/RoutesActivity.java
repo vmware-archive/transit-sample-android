@@ -13,12 +13,14 @@ public class RoutesActivity extends Activity {
         public static final String STOP = "stop";
     }
 
-    public static RouteParcel getRoute(final Intent intent) {
-        return (RouteParcel) intent.getParcelableExtra(Extras.ROUTE);
+    public static Route getRoute(final Intent intent) {
+        final RouteParcel parcel = intent.getParcelableExtra(Extras.ROUTE);
+        return parcel.getRoute();
     }
 
-    public static StopParcel getStop(final Intent intent) {
-        return (StopParcel) intent.getParcelableExtra(Extras.STOP);
+    public static Stop getStop(final Intent intent) {
+        final StopParcel parcel = intent.getParcelableExtra(Extras.STOP);
+        return parcel.getStop();
     }
 
     public static void newInstanceForResult(final Fragment fragment, final int requestCode) {

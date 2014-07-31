@@ -14,6 +14,8 @@ public class Notification {
 
     public String time;
 
+    public String tag;
+
     public boolean enabled;
 
 }

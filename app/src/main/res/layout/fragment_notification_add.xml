@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Note: You will receive push notifications alerting you about upcoming transit times within a 15 minute window before and after the time you select."
+        android:text="Note: You will receive push notifications alerting you about upcoming transit times within a 15 minute window of the time you select."
         android:textColor="#aaa"
         android:layout_marginTop="20dp"
         android:gravity="center|bottom" />
