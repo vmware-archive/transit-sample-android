@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.pivotal.android.data.DataStore;
-import io.pivotal.android.data.data.DataObject;
+import io.pivotal.android.data.DataObject;
 
 public abstract class RemoteAdapter<T> extends BaseAdapter {
 
@@ -117,6 +117,9 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
             public void success(final DataObject object) {
                 final String json = (String) object.get("items");
                 final List<T> items = new Gson().fromJson(json, getListType());
+                if (items.isEmpty()) {
+                    Toast.makeText(mContext, "Please add some items to your notification list", Toast.LENGTH_SHORT).show();
+                }
                 Log.v("ttc", "refresh success");
                 setItems(items);
             }
@@ -128,7 +131,11 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
 
             @Override
             public void failure(final DataObject object, final String reason) {
-                Toast.makeText(mContext, "Fetch Failure: " + reason, Toast.LENGTH_SHORT).show();
+                if (reason.contains("404")) {
+                    Toast.makeText(mContext, "Please add some items to your notification list", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(mContext, "Fetch Failure: " + reason, Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

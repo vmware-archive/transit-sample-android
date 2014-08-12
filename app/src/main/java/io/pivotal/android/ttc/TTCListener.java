@@ -3,8 +3,8 @@ package io.pivotal.android.ttc;
 import android.os.Handler;
 import android.os.Looper;
 
-import io.pivotal.android.data.data.DataListener;
-import io.pivotal.android.data.data.DataObject;
+import io.pivotal.android.data.DataListener;
+import io.pivotal.android.data.DataObject;
 
 public abstract class TTCListener implements DataListener {
 

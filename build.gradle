@@ -4,12 +4,13 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.11.+'
+        classpath 'com.android.tools.build:gradle:0.12.2'
     }
 }
 
 allprojects {
     repositories {
+        mavenLocal()
         mavenCentral()
         maven {url 'https://maven.xtremelabs.com/artifactory/libs-release-local'}
     }

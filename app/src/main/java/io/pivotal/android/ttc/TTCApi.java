@@ -23,12 +23,11 @@ import io.pivotal.android.push.RegistrationParameters;
 
 public class TTCApi {
 
-    public static final String CLIENT_ID = "PushSDKDemoApp";
-    public static final String CLIENT_SECRET = "secret";
-    public static final String AUTHORIZATION_URL = "http://ident.one.pepsi.cf-app.com/oauth/authorize";
-    public static final String TOKEN_URL = "http://ident.one.pepsi.cf-app.com/token";
+    public static final String CLIENT_ID = "6006fa24-2757-481d-b894-f79ed8037e1f";
+    public static final String CLIENT_SECRET = "C8eJhboAHq_h-oP6po5MoRWQsjWATFDZM8dqbKXBZ8RdeMvv_faF88DVBAp6OsAozU9brBqhYt0RTwpZABYRIQ";
+    public static final String AUTHORIZATION_URL = "http://datasync-authentication.kona.coffee.cfms-apps.com";
     public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
-    public static final String DATA_SERVICES_URL = "http://data-service.one.pepsi.cf-app.com";
+    public static final String DATA_SERVICES_URL = "http://datasync-datastore.kona.coffee.cfms-apps.com";
 
     public static final String GCM_SENDER_ID = "960682130245";
     public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";
@@ -44,8 +43,8 @@ public class TTCApi {
     }
 
     public static void setupData(final Context context) {
-        DataStore.getInstance().setParameters(context, new DataStoreParameters(
-                CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, TOKEN_URL, REDIRECT_URL, DATA_SERVICES_URL
+        DataStore.getInstance().initialize(context, new DataStoreParameters(
+                CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, REDIRECT_URL, DATA_SERVICES_URL
         ));
     }
 
