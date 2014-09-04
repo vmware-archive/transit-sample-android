@@ -23,11 +23,11 @@ import io.pivotal.android.push.RegistrationParameters;
 
 public class TTCApi {
 
-    public static final String CLIENT_ID = "6006fa24-2757-481d-b894-f79ed8037e1f";
-    public static final String CLIENT_SECRET = "C8eJhboAHq_h-oP6po5MoRWQsjWATFDZM8dqbKXBZ8RdeMvv_faF88DVBAp6OsAozU9brBqhYt0RTwpZABYRIQ";
-    public static final String AUTHORIZATION_URL = "http://datasync-authentication.kona.coffee.cfms-apps.com";
+    public static final String CLIENT_ID = "38797289-4c41-4484-8b1d-e5e9b3322bf9";
+    public static final String CLIENT_SECRET = "JCA_kYEfST2POx41VS-JiiddwsF36Ydz_HzvuvsyNTNekp7qlXcaFH-fZ6Tw3Sf1oCrh0T6QpEOMQsLdjWHyLw";
+    public static final String AUTHORIZATION_URL = "http://ident.one.pepsi.cf-app.com";
     public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
-    public static final String DATA_SERVICES_URL = "http://datasync-datastore.kona.coffee.cfms-apps.com";
+    public static final String DATA_SERVICES_URL = "http://data-service.one.pepsi.cf-app.com";
 
     public static final String GCM_SENDER_ID = "960682130245";
     public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";

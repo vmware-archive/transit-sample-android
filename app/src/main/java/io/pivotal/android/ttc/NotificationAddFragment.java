@@ -67,16 +67,12 @@ public class NotificationAddFragment extends Fragment {
 
     private Notification createNotification(final int hour, final int minute) {
         final Notification notification = new Notification();
-        notification.tag = getTagFormat(hour, minute);
+        notification.tag = TagUtil.getTag(hour, minute, mRoute, mStop);
         notification.time = getTimeFormat(hour, minute);
         notification.route = mRoute.title;
         notification.stop = mStop.title;
         notification.enabled = true;
         return notification;
-    }
-
-    private String getTagFormat(final int hour, final int minute) {
-        return String.format("%02d%02d_%s_%s", hour, minute, mRoute.tag, mStop.stopId);
     }
 
     private String getTimeFormat(final int hour, final int minute) {
