@@ -23,16 +23,16 @@ import io.pivotal.android.push.RegistrationParameters;
 
 public class TTCApi {
 
-    public static final String CLIENT_ID = "38797289-4c41-4484-8b1d-e5e9b3322bf9";
-    public static final String CLIENT_SECRET = "JCA_kYEfST2POx41VS-JiiddwsF36Ydz_HzvuvsyNTNekp7qlXcaFH-fZ6Tw3Sf1oCrh0T6QpEOMQsLdjWHyLw";
-    public static final String AUTHORIZATION_URL = "http://ident.one.pepsi.cf-app.com";
+    public static final String CLIENT_ID = "a2b9fe12-e6a4-48c8-a4ae-f420b92681c2";
+    public static final String CLIENT_SECRET = "UwP2LcW0C_Fjmsc7UrEDlS0mhRDItYhYPvtvTAkbhwsVK0I-N0gOf_WtwyBbMhWQ5DWVjZXjai-LiBB0HNUJoA";
+    public static final String AUTHORIZATION_URL = "http://datasync-authentication.one.pepsi.cf-app.com";
     public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
-    public static final String DATA_SERVICES_URL = "http://data-service.one.pepsi.cf-app.com";
+    public static final String DATA_SERVICES_URL = "http://datasync-datastore.one.pepsi.cf-app.com";
 
     public static final String GCM_SENDER_ID = "960682130245";
     public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";
     public static final String VARIANT_SECRET = "96fe7aae-069f-4551-9e03-6aa77fc7c611";
-    public static final String PUSH_BASE_SERVER_URL = "http://cfms-push-service-dev.main.vchs.cfms-apps.com";
+    public static final String PUSH_BASE_SERVER_URL = "http://push-notifications.one.pepsi.cf-app.com";
     public static final String DEVICE_ALIAS = "push-demo-alias";
 
 
