@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -55,7 +56,12 @@ public class RoutesFragment extends Fragment implements LoaderManager.LoaderCall
     public void onLoadFinished(final Loader<Route.List> loader, final Route.List data) {
         Crouton.cancelAllCroutons();
         mAdapter.clear();
-        mAdapter.addAll(data);
+        if (data != null) {
+            mAdapter.addAll(data);
+        } else {
+            Toast.makeText(getActivity(), "No stops available. Check server.", Toast.LENGTH_SHORT).show();
+            getActivity().finish();
+        }
     }
 
     @Override

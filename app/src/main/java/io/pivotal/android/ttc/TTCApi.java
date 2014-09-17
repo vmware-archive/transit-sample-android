@@ -23,17 +23,19 @@ import io.pivotal.android.push.RegistrationParameters;
 
 public class TTCApi {
 
-    public static final String CLIENT_ID = "a2b9fe12-e6a4-48c8-a4ae-f420b92681c2";
-    public static final String CLIENT_SECRET = "UwP2LcW0C_Fjmsc7UrEDlS0mhRDItYhYPvtvTAkbhwsVK0I-N0gOf_WtwyBbMhWQ5DWVjZXjai-LiBB0HNUJoA";
-    public static final String AUTHORIZATION_URL = "http://datasync-authentication.one.pepsi.cf-app.com";
+    public static final String CLIENT_ID = "cd68e385-c0e8-4740-a563-748e643a2280";
+    public static final String CLIENT_SECRET = "IaioD3Mcj4XU67ySMidiFDNrKwv68RB4Cft2zLrdJHoWcdqjsCSWf1U1EZDR6JKufpNp9NTcBqSxbR6bA95_eg";
+    public static final String AUTHORIZATION_URL = "http://datasync-authentication.demo.vchs.cfms-apps.com";
     public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
-    public static final String DATA_SERVICES_URL = "http://datasync-datastore.one.pepsi.cf-app.com";
+    public static final String DATA_SERVICES_URL = "http://datasync-datastore.demo.vchs.cfms-apps.com";
 
     public static final String GCM_SENDER_ID = "960682130245";
     public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";
     public static final String VARIANT_SECRET = "96fe7aae-069f-4551-9e03-6aa77fc7c611";
-    public static final String PUSH_BASE_SERVER_URL = "http://push-notifications.one.pepsi.cf-app.com";
-    public static final String DEVICE_ALIAS = "push-demo-alias";
+    public static final String PUSH_BASE_SERVER_URL = "http://push-notifications.demo.vchs.cfms-apps.com";
+    public static final String DEVICE_ALIAS = "ttc-app";
+
+    public static final String API_GATEWAY_BASE_URL = "http://transit-gateway.demo.vchs.cfms-apps.com/ttc/routes";
 
 
     public static void setupPush(final Context context, Set<String> tags) {
@@ -53,12 +55,12 @@ public class TTCApi {
     }
 
     public static Route.List getRoutes() throws Exception {
-        final HttpGet request = new HttpGet("http://nextbus.one.pepsi.cf-app.com/ttc/routes");
+        final HttpGet request = new HttpGet(API_GATEWAY_BASE_URL);
         return execute(request, new Gson(), Route.List.class);
     }
 
     public static Stop.List getStops(final String tag) throws Exception {
-        final HttpGet request = new HttpGet("http://nextbus.one.pepsi.cf-app.com/ttc/routes/" + tag);
+        final HttpGet request = new HttpGet(API_GATEWAY_BASE_URL + tag);
         final Stop.Response response = execute(request, new Gson(), Stop.Response.class);
         return response != null ? response.stops : null;
     }
