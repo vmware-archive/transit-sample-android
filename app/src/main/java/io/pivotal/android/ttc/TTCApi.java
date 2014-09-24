@@ -60,7 +60,7 @@ public class TTCApi {
     }
 
     public static Stop.List getStops(final String tag) throws Exception {
-        final HttpGet request = new HttpGet(API_GATEWAY_BASE_URL + tag);
+        final HttpGet request = new HttpGet(API_GATEWAY_BASE_URL + "/" + tag);
         final Stop.Response response = execute(request, new Gson(), Stop.Response.class);
         return response != null ? response.stops : null;
     }
