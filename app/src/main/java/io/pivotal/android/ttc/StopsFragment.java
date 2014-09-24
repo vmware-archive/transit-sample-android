@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -59,7 +60,11 @@ public class StopsFragment extends Fragment implements LoaderManager.LoaderCallb
     public void onLoadFinished(final Loader<Stop.List> loader, final Stop.List data) {
         Crouton.cancelAllCroutons();
         mAdapter.clear();
-        mAdapter.addAll(data);
+        if (data != null) {
+            mAdapter.addAll(data);
+        } else {
+            Toast.makeText(getActivity(), "Error loading stops.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
