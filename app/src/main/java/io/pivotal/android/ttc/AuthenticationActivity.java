@@ -24,8 +24,4 @@ public class AuthenticationActivity extends Activity {
     public void onAuthenticateClicked(final View view) {
         TTCApi.authenticate(this);
     }
-
-    public void onLogOutClicked(final View view) {
-        TTCApi.fullLogoutFromActivity(this);
-    };
 }
