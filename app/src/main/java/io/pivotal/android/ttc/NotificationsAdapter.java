@@ -18,8 +18,8 @@ import java.util.Set;
 
 public class NotificationsAdapter extends RemoteAdapter<Notification> {
 
-    public NotificationsAdapter(final Context context) {
-        super(context);
+    public NotificationsAdapter(final Context context, final UnauthorizedListener unauthorizedListener) {
+        super(context, unauthorizedListener);
     }
 
     protected Type getListType() {

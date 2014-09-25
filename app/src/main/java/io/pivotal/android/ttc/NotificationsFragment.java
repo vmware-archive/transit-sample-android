@@ -40,7 +40,18 @@ public class NotificationsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        mAdapter = new NotificationsAdapter(getActivity()) {
+        final RemoteAdapter.UnauthorizedListener unauthorizedListener = new RemoteAdapter.UnauthorizedListener() {
+
+            @Override
+            public void onUnauthorized() {
+                // The user's access token must have expired so log the user out of the data SDK.
+                // Note that we want push notifications to remain registered so that the user
+                // will still know when their stops are imminent.
+                TTCApi.dataLogoutOnlyFromActivity(getActivity());
+            }
+        };
+
+        mAdapter = new NotificationsAdapter(getActivity(), unauthorizedListener) {
 
             @Override
             public void refresh() {
@@ -92,7 +103,7 @@ public class NotificationsFragment extends Fragment {
     }
 
     private void logout() {
-        TTCApi.logout(getActivity());
+        TTCApi.fullLogoutFromActivity(getActivity());
     }
 
     @Override

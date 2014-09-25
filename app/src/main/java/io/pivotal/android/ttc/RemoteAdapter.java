@@ -16,14 +16,20 @@ import io.pivotal.android.data.DataObject;
 
 public abstract class RemoteAdapter<T> extends BaseAdapter {
 
+    public interface UnauthorizedListener {
+        public void onUnauthorized();
+    }
+
     private final Object mLock = new Object();
     private final DataObject mRemote;
     private final Context mContext;
+    private final UnauthorizedListener mUnauthorizedListener;
 
     private List<T> mItems = new ArrayList<T>();
 
-    public RemoteAdapter(final Context context) {
+    public RemoteAdapter(final Context context, UnauthorizedListener unauthorizedListener) {
         mContext = context;
+        mUnauthorizedListener = unauthorizedListener;
         mRemote = new DataObject("notifications");
         mRemote.setObjectId("my-notifications");
     }
@@ -159,6 +165,9 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
             @Override
             public void unauthorized(final DataObject object) {
                 Toast.makeText(mContext, "Save Failure: Not Authorized", Toast.LENGTH_SHORT).show();
+                if (mUnauthorizedListener != null) {
+                    mUnauthorizedListener.onUnauthorized();
+                }
             }
 
             @Override

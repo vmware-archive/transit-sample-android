@@ -26,6 +26,6 @@ public class AuthenticationActivity extends Activity {
     }
 
     public void onLogOutClicked(final View view) {
-        TTCApi.logout(this);
+        TTCApi.fullLogoutFromActivity(this);
     };
 }

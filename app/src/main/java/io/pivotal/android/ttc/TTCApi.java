@@ -28,8 +28,8 @@ public class TTCApi {
     public static final String CLIENT_ID = "cd68e385-c0e8-4740-a563-748e643a2280";
     public static final String CLIENT_SECRET = "IaioD3Mcj4XU67ySMidiFDNrKwv68RB4Cft2zLrdJHoWcdqjsCSWf1U1EZDR6JKufpNp9NTcBqSxbR6bA95_eg";
     public static final String AUTHORIZATION_URL = "http://datasync-authentication.demo.vchs.cfms-apps.com";
-    public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
     public static final String DATA_SERVICES_URL = "http://datasync-datastore.demo.vchs.cfms-apps.com";
+    public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
 
     public static final String GCM_SENDER_ID = "960682130245";
     public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";
@@ -60,15 +60,15 @@ public class TTCApi {
         ));
     }
 
-    public static void dataLogout(final Context context) {
-        DataStore.getInstance().clearAuthorization(context);
-    }
-
     public static void authenticate(Activity activity) {
         DataStore.getInstance().obtainAuthorization(activity);
     }
 
-    public static void logout(final Activity activity) {
+    public static void dataLogout(final Context context) {
+        DataStore.getInstance().clearAuthorization(context);
+    }
+
+    public static void fullLogoutFromActivity(final Activity activity) {
         TTCApi.pushUnregister(activity, new UnregistrationListener() {
 
             @Override
@@ -87,9 +87,13 @@ public class TTCApi {
                 });
             }
         });
+        Toast.makeText(activity, activity.getString(R.string.user_logged_out), Toast.LENGTH_SHORT).show();
+        dataLogoutOnlyFromActivity(activity);
+    }
+
+    public static void dataLogoutOnlyFromActivity(final Activity activity) {
         TTCPreferences.setIsAuthenticated(activity, false);
         TTCApi.dataLogout(activity);
-        Toast.makeText(activity, activity.getString(R.string.user_logged_out), Toast.LENGTH_SHORT).show();
         AuthenticationActivity.newInstance(activity);
         activity.finish();
     }
