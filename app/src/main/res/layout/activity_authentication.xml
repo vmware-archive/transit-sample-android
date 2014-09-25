@@ -23,16 +23,27 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
         android:layout_centerInParent="true"
-        android:text="This application requires that you authenticate before proceeding."
+        android:text="@string/authentication_text"
         android:textColor="#aaa"
         android:gravity="center" />
 
     <Button
+        android:id="@+id/authenticate_button"
         android:layout_below="@id/authentication_text"
         android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
         android:layout_height="wrap_content"
         android:onClick="onAuthenticateClicked"
         android:padding="10dp"
-        android:text="Authenticate" />
+        android:text="@string/authenticate_button" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_below="@id/authenticate_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onLogOutClicked"
+        android:padding="10dp"
+        android:text="@string/logout_button" />
 
 </RelativeLayout>

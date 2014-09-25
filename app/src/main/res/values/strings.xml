@@ -7,5 +7,10 @@
 
     <string name="menu_add">Add</string>
     <string name="menu_done">Done</string>
+    <string name="authentication_text">This application requires that you authenticate before proceeding.</string>
+    <string name="authenticate_button">Authenticate</string>
+    <string name="logout_button">Log out</string>
+    <string name="user_logged_out">User logged out</string>
+    <string name="unable_to_unregister_push">Unable to unregister from push notifications</string>
 
 </resources>

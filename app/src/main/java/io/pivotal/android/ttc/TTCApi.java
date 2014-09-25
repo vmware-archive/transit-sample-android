@@ -20,6 +20,7 @@ import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.DataStoreParameters;
 import io.pivotal.android.push.Push;
 import io.pivotal.android.push.RegistrationParameters;
+import io.pivotal.android.push.registration.UnregistrationListener;
 
 public class TTCApi {
 
@@ -39,15 +40,27 @@ public class TTCApi {
 
 
     public static void setupPush(final Context context, Set<String> tags) {
-        Push.getInstance(context).startRegistration(new RegistrationParameters(
+        Push.getInstance(context).startRegistration(getPushParameters(tags));
+    }
+
+    public static void pushUnregister(final Context context, UnregistrationListener listener) {
+        Push.getInstance(context).startUnregistration(getPushParameters(null), listener);
+    }
+
+    private static RegistrationParameters getPushParameters(Set<String> tags) {
+        return new RegistrationParameters(
                 GCM_SENDER_ID, VARIANT_UUID, VARIANT_SECRET, DEVICE_ALIAS, PUSH_BASE_SERVER_URL, tags
-        ));
+        );
     }
 
     public static void setupData(final Context context) {
         DataStore.getInstance().initialize(context, new DataStoreParameters(
                 CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, REDIRECT_URL, DATA_SERVICES_URL
         ));
+    }
+
+    public static void dataLogout(final Context context) {
+        DataStore.getInstance().clearAuthorization(context);
     }
 
     public static void authenticate(Activity activity) {
