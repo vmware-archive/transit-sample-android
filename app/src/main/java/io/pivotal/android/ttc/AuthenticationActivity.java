@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
-
-import io.pivotal.android.push.registration.UnregistrationListener;
 
 public class AuthenticationActivity extends Activity {
 
@@ -29,25 +26,6 @@ public class AuthenticationActivity extends Activity {
     }
 
     public void onLogOutClicked(final View view) {
-        TTCApi.pushUnregister(this, new UnregistrationListener() {
-
-            @Override
-            public void onUnregistrationComplete() {
-                // Does nothing
-            }
-
-            @Override
-            public void onUnregistrationFailed(String s) {
-                final String message = getString(R.string.unable_to_unregister_push) + ": " + s;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(AuthenticationActivity.this, message, Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
-        });
-        TTCApi.dataLogout(this);
-        Toast.makeText(this, getString(R.string.user_logged_out), Toast.LENGTH_SHORT).show();
+        TTCApi.logout(this);
     };
 }

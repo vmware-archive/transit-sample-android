@@ -16,6 +16,7 @@ public class AuthorizationActivity extends BaseAuthorizationActivity {
 
     @Override
     public void onAuthorizationComplete() {
+        TTCPreferences.setIsAuthenticated(this, true);
         final Intent intent = new Intent(this, NotificationsActivity.class);
         startActivity(intent);
         finish();

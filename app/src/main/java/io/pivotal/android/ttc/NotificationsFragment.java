@@ -76,12 +76,23 @@ public class NotificationsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_add) {
-            final int requestCode = RequestCode.REQUEST_NOTIFICATION;
-            NotificationAddActivity.newInstanceForResult(this, requestCode);
+            addNotification();
+            return true;
+        } else if (item.getItemId() == R.id.menu_logout) {
+            logout();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void addNotification() {
+        final int requestCode = RequestCode.REQUEST_NOTIFICATION;
+        NotificationAddActivity.newInstanceForResult(this, requestCode);
+    }
+
+    private void logout() {
+        TTCApi.logout(getActivity());
     }
 
     @Override

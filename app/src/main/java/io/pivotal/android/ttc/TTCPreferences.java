@@ -18,7 +18,7 @@ public class TTCPreferences {
         return getSharedPreferences(context).getBoolean(Keys.AUTHENTICATED, false);
     }
 
-    public void setIsAuthenticated(final Context context, final boolean authenticated) {
+    public static void setIsAuthenticated(final Context context, final boolean authenticated) {
         final SharedPreferences.Editor editor = getSharedPreferences(context).edit();
         editor.putBoolean(Keys.AUTHENTICATED, authenticated);
         editor.commit();

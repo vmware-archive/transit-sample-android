@@ -118,7 +118,7 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
                 final String json = (String) object.get("items");
                 final List<T> items = new Gson().fromJson(json, getListType());
                 if (items.isEmpty()) {
-                    Toast.makeText(mContext, "Please add some items to your notification list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Please add some items to your notification list.", Toast.LENGTH_SHORT).show();
                 }
                 Log.v("ttc", "refresh success");
                 setItems(items);
@@ -127,14 +127,17 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
             @Override
             public void unauthorized(final DataObject object) {
                 Toast.makeText(mContext, "Fetch Failure: Not Authorized", Toast.LENGTH_SHORT).show();
+                if (mUnauthorizedListener != null) {
+                    mUnauthorizedListener.onUnauthorized();
+                }
             }
 
             @Override
             public void failure(final DataObject object, final String reason) {
                 if (reason.contains("404")) {
-                    Toast.makeText(mContext, "Please add some items to your notification list", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Please add some items to your notification list.", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(mContext, "Fetch Failure: " + reason, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "Fetch Failure: " + reason, Toast.LENGTH_LONG).show();
                 }
             }
         });

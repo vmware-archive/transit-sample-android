@@ -4,7 +4,14 @@
         android:id="@+id/menu_add"
         android:icon="@drawable/ic_action_new"
         android:orderInCategory="100"
-        android:showAsAction="always"
+        android:showAsAction="always|withText"
         android:title="@string/menu_add"/>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:icon="@drawable/ic_menu_blocked_user"
+        android:orderInCategory="101"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_log_out"/>
 
 </menu>

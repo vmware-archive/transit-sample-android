@@ -2,6 +2,7 @@ package io.pivotal.android.ttc;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -65,6 +66,32 @@ public class TTCApi {
 
     public static void authenticate(Activity activity) {
         DataStore.getInstance().obtainAuthorization(activity);
+    }
+
+    public static void logout(final Activity activity) {
+        TTCApi.pushUnregister(activity, new UnregistrationListener() {
+
+            @Override
+            public void onUnregistrationComplete() {
+                // Does nothing
+            }
+
+            @Override
+            public void onUnregistrationFailed(String s) {
+                final String message = activity.getString(R.string.unable_to_unregister_push) + ": " + s;
+                activity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(activity, message, Toast.LENGTH_LONG).show();
+                    }
+                });
+            }
+        });
+        TTCPreferences.setIsAuthenticated(activity, false);
+        TTCApi.dataLogout(activity);
+        Toast.makeText(activity, activity.getString(R.string.user_logged_out), Toast.LENGTH_SHORT).show();
+        AuthenticationActivity.newInstance(activity);
+        activity.finish();
     }
 
     public static Route.List getRoutes() throws Exception {

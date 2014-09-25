@@ -12,5 +12,6 @@
     <string name="logout_button">Log out</string>
     <string name="user_logged_out">User logged out</string>
     <string name="unable_to_unregister_push">Unable to unregister from push notifications</string>
+    <string name="menu_log_out">Log out</string>
 
 </resources>
