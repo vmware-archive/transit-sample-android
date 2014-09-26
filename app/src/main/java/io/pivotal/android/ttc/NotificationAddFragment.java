@@ -12,6 +12,9 @@ import android.widget.TimePicker;
 
 public class NotificationAddFragment extends Fragment {
 
+    public static final String ROUTE_KEY = "ROUTE";
+    public static final String STOP_KEY = "STOP";
+
     private static interface RequestCode {
         public static final int REQUEST_ROUTE = 0;
     }
@@ -27,7 +30,20 @@ public class NotificationAddFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_notification_add, container, false);
         mTimePickerView = (TimePicker) view.findViewById(R.id.notification_add_time);
         mRouteAndStopTextView = (TextView) view.findViewById(R.id.notification_add_stop);
+        if (savedInstanceState != null) {
+            restoreState(savedInstanceState);
+        }
         return view;
+    }
+
+    private void restoreState(Bundle bundle) {
+        if (bundle.containsKey(ROUTE_KEY)) {
+            mRoute = ((RouteParcel)bundle.getParcelable(ROUTE_KEY)).getRoute();
+        }
+        if (bundle.containsKey(STOP_KEY)) {
+            mStop = ((StopParcel)bundle.getParcelable(STOP_KEY)).getStop();
+        }
+        showRouteAndStop();
     }
 
     @Override
@@ -50,12 +66,15 @@ public class NotificationAddFragment extends Fragment {
         if (requestCode == RequestCode.REQUEST_ROUTE && resultCode == Activity.RESULT_OK) {
             mRoute = RoutesActivity.getRoute(data);
             mStop = RoutesActivity.getStop(data);
+            showRouteAndStop();
+        }
+    }
 
-            if (mRoute != null && mStop != null) {
-                mRouteAndStopTextView.setText(mRoute.title + "\n\n" + mStop.title);
-            } else {
-                mRouteAndStopTextView.setText(getActivity().getString(R.string.missing_route_and_stop));
-            }
+    private void showRouteAndStop() {
+        if (mRoute != null && mStop != null) {
+            mRouteAndStopTextView.setText(mRoute.title + "\n\n" + mStop.title);
+        } else {
+            mRouteAndStopTextView.setText(R.string.select_a_stop);
         }
     }
 
@@ -89,4 +108,14 @@ public class NotificationAddFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        if (mRoute != null) {
+            outState.putParcelable(ROUTE_KEY, new RouteParcel(mRoute));
+        }
+        if (mStop != null) {
+            outState.putParcelable(STOP_KEY, new StopParcel(mStop));
+        }
+    }
 }
