@@ -49,7 +49,7 @@
         <activity android:name=".NotificationsActivity" />
 
         <activity android:name=".NotificationAddActivity"
-            android:label="@string/select_time_and_stop"/>
+            android:label="@string/select_stop_and_time"/>
 
         <activity android:name=".RoutesActivity"
             android:label="@string/select_route"/>

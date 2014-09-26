@@ -15,7 +15,7 @@
     <string name="menu_log_out">Log out</string>
     <string name="select_route">Select Route</string>
     <string name="select_stop">Select Stop</string>
-    <string name="select_time_and_stop">Select Time and Stop</string>
+    <string name="select_stop_and_time">Select Stop and Time</string>
     <string name="missing_route_and_stop">Missing route and stop information.</string>
 
 </resources>
