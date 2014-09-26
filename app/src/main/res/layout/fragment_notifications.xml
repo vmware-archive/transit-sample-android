@@ -12,4 +12,23 @@
         android:padding="20dp"
         android:numColumns="1" />
 
+    <LinearLayout
+        android:id="@+id/empty_notification_instructions_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:background="@drawable/background_item"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/empty_notification_instructions"
+            android:text="@string/empty_notification_instructions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+
+    </LinearLayout>
+
 </FrameLayout>

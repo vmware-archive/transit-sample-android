@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.ProgressBar;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
@@ -24,13 +24,15 @@ public class NotificationsFragment extends Fragment {
 
     private NotificationsAdapter mAdapter;
     private AbsListView mAdapterView;
-    private ProgressBar mProgressBar;
+    private View mEmptyNotificationsView;
 
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_notifications, container, false);
         mAdapterView = (AbsListView) view.findViewById(android.R.id.list);
-        mProgressBar = (ProgressBar) view.findViewById(android.R.id.progress);
+        mEmptyNotificationsView = view.findViewById(R.id.empty_notification_instructions_box);
+        mAdapterView.setVisibility(View.GONE);
+        mEmptyNotificationsView.setVisibility(View.GONE);
         return view;
     }
 
@@ -69,12 +71,28 @@ public class NotificationsFragment extends Fragment {
             public void onItemsChanged() {
                 Crouton.cancelAllCroutons();
                 super.onItemsChanged();
+                if (getCount() <= 0) {
+                    showEmptyScreen();
+                } else {
+                    showDataScreen();
+                }
+                Log.v(Const.TAG, "Loaded " + super.getCount() + " items.");
             }
         };
 
         mAdapterView.setAdapter(mAdapter);
 
         mAdapter.refresh();
+    }
+
+    private void showEmptyScreen() {
+        mEmptyNotificationsView.setVisibility(View.VISIBLE);
+        mAdapterView.setVisibility(View.GONE);
+    }
+
+    private void showDataScreen() {
+        mEmptyNotificationsView.setVisibility(View.GONE);
+        mAdapterView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -117,5 +135,4 @@ public class NotificationsFragment extends Fragment {
             }
         }
     }
-
 }

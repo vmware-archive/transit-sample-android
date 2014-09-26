@@ -30,7 +30,7 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
     public void onItemsChanged() {
         final Set<String> tags = getTagsFromNotifications();
 
-        Log.v("ttc", "setupPush: " + tags);
+        Log.v(Const.TAG, "setupPush: " + tags);
         TTCApi.setupPush(getContext(), tags);
     }
 
@@ -55,7 +55,7 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
 
         final Notification notification = getItem(position);
 
-        Log.i("ttc", "Notification: " + notification);
+        Log.i(Const.TAG, "Notification: " + notification);
 
         final TextView routeView = (TextView) convertView.findViewById(R.id.notification_route);
         routeView.setText(notification.route);
@@ -72,7 +72,7 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
             @Override
             public void onClick(final View v) {
                 final boolean isChecked = enabledView.isChecked();
-                Log.v("ttc", "onCheckedChanged: " + isChecked);
+                Log.v(Const.TAG, "onCheckedChanged: " + isChecked);
                 notification.enabled = isChecked;
                 sync();
             }
@@ -81,7 +81,7 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
         convertView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-                Log.v("ttc", "onLongClick");
+                Log.v(Const.TAG, "onLongClick");
                 removeItem(notification);
                 return true;
             }
