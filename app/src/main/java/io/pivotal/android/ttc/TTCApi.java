@@ -11,6 +11,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpUriRequest;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
+import org.apache.http.params.HttpParams;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,6 +41,7 @@ public class TTCApi {
 
     public static final String API_GATEWAY_BASE_URL = "http://transit-gateway.demo.vchs.cfms-apps.com/ttc/routes";
 
+    private static int TEN_SECONDS = 10000;
 
     public static void setupPush(final Context context, Set<String> tags) {
         Push.getInstance(context).startRegistration(getPushParameters(tags));
@@ -110,12 +113,21 @@ public class TTCApi {
     }
 
     private static <T> T execute(final HttpUriRequest request, final Gson gson, final Type type) throws Exception {
-        final HttpResponse response = new DefaultHttpClient().execute(request);
+        final DefaultHttpClient client = getClient();
+        final HttpResponse response = client.execute(request);
         final InputStream inputStream = response.getEntity().getContent();
         final InputStreamReader inputReader = new InputStreamReader(inputStream);
         final JsonReader jsonReader = new JsonReader(inputReader);
         final T list = gson.fromJson(jsonReader, type);
         jsonReader.close();
         return list;
+    }
+
+    private static DefaultHttpClient getClient() {
+        final DefaultHttpClient client = new DefaultHttpClient();
+        final HttpParams params = client.getParams();
+        HttpConnectionParams.setConnectionTimeout(params, TEN_SECONDS);
+        HttpConnectionParams.setSoTimeout(params, TEN_SECONDS);
+        return client;
     }
 }
