@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 
+import java.util.List;
+
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
 
@@ -131,8 +133,22 @@ public class NotificationsFragment extends Fragment {
         if (requestCode == RequestCode.REQUEST_NOTIFICATION && resultCode == Activity.RESULT_OK) {
             final Notification notification = NotificationAddActivity.getNotification(data);
             if (notification != null) {
-                mAdapter.addItem(notification);
+                if (!notificationAlreadyExists(notification)) {
+                    mAdapter.addItem(notification);
+                } else {
+                    Crouton.makeText(getActivity(), R.string.stop_already_exists, Style.INFO).show();
+                }
             }
         }
+    }
+
+    private boolean notificationAlreadyExists(Notification notification) {
+        final List<Notification> existingNotifications = mAdapter.getItems();
+        for (final Notification existingNotification : existingNotifications) {
+            if (existingNotification.equals(notification)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
