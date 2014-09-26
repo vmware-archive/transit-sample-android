@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-
 public class NotificationsActivity extends Activity {
 
     public static void newInstance(final Activity activity) {
