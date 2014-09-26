@@ -19,5 +19,6 @@
     <string name="missing_route_and_stop">Missing route and stop information.</string>
     <string name="empty_notification_instructions">Your list of notifications is empty. Press the \'Add\' button above to add a notification.</string>
     <string name="stop_already_exists">You already have that stop in your list.</string>
+    <string name="notification">Notification</string>
 
 </resources>

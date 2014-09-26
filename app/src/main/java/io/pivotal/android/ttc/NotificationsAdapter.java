@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class NotificationsAdapter extends RemoteAdapter<Notification> {
+public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
 
     public NotificationsAdapter(final Context context, final UnauthorizedListener unauthorizedListener) {
         super(context, unauthorizedListener);
@@ -25,6 +25,8 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
     protected Type getListType() {
         return new TypeToken<ArrayList<Notification>>(){}.getType();
     }
+
+    public abstract void onItemLongTouched(Notification notification);
 
     @Override
     public void onItemsChanged() {
@@ -82,7 +84,7 @@ public class NotificationsAdapter extends RemoteAdapter<Notification> {
             @Override
             public boolean onLongClick(final View v) {
                 Log.v(Const.TAG, "onLongClick");
-                removeItem(notification);
+                onItemLongTouched(notification);
                 return true;
             }
         });

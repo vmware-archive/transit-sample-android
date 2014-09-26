@@ -70,6 +70,22 @@ public class NotificationsFragment extends Fragment {
             }
 
             @Override
+            public void onItemLongTouched(final Notification notification) {
+
+                final RemoveNotificationDialogFragment.Listener listener = new RemoveNotificationDialogFragment.Listener() {
+                    @Override
+                    public void onClickResult(int result) {
+                        if (result == RemoveNotificationDialogFragment.REMOVE_NOTIFICATION) {
+                            mAdapter.removeItem(notification);
+                        }
+                    }
+                };
+                final RemoveNotificationDialogFragment dialog = new RemoveNotificationDialogFragment();
+                dialog.setListener(listener);
+                dialog.show(getFragmentManager(), "RemoveNotificationDialogFragment");
+            }
+
+            @Override
             public void onItemsChanged() {
                 Crouton.cancelAllCroutons();
                 super.onItemsChanged();
