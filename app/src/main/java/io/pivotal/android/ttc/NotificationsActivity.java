@@ -1,6 +1,8 @@
 package io.pivotal.android.ttc;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -16,6 +18,16 @@ public class NotificationsActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clearNotificationsFromStatus();
+    }
+
+    private void clearNotificationsFromStatus() {
+        final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.cancel(TTCPushService.NOTIFICATION_ID);
     }
 }
