@@ -23,14 +23,8 @@ public class StopsAdapter extends ArrayAdapter<Stop> {
 
         final Stop stop = getItem(position);
 
-        final TextView tagView = (TextView) convertView.findViewById(R.id.stop_tag);
-        tagView.setText(stop.tag);
-
         final TextView titleView = (TextView) convertView.findViewById(R.id.stop_name);
         titleView.setText(stop.title);
-
-        final TextView idView = (TextView) convertView.findViewById(R.id.stop_id);
-        idView.setText(stop.stopId);
 
         return convertView;
     }

@@ -16,8 +16,8 @@ public class NotificationAddFragment extends Fragment {
         public static final int REQUEST_ROUTE = 0;
     }
 
-    private TimePicker mPickerView;
-    private TextView mTextView;
+    private TimePicker mTimePickerView;
+    private TextView mRouteAndStopTextView;
 
     private Route mRoute;
     private Stop mStop;
@@ -25,8 +25,8 @@ public class NotificationAddFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_notification_add, container, false);
-        mPickerView = (TimePicker) view.findViewById(R.id.notification_add_time);
-        mTextView = (TextView) view.findViewById(R.id.notification_add_stop);
+        mTimePickerView = (TimePicker) view.findViewById(R.id.notification_add_time);
+        mRouteAndStopTextView = (TextView) view.findViewById(R.id.notification_add_stop);
         return view;
     }
 
@@ -34,7 +34,7 @@ public class NotificationAddFragment extends Fragment {
     public void onViewCreated(final View view, final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mTextView.setOnClickListener(new View.OnClickListener() {
+        mRouteAndStopTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 final Fragment instance = NotificationAddFragment.this;
@@ -51,14 +51,18 @@ public class NotificationAddFragment extends Fragment {
             mRoute = RoutesActivity.getRoute(data);
             mStop = RoutesActivity.getStop(data);
 
-            mTextView.setText(mRoute.title + "\n\n" + mStop.title);
+            if (mRoute != null && mStop != null) {
+                mRouteAndStopTextView.setText(mRoute.title + "\n\n" + mStop.title);
+            } else {
+                mRouteAndStopTextView.setText(getActivity().getString(R.string.missing_route_and_stop));
+            }
         }
     }
 
     public Notification getNotification() {
         if (mRoute != null && mStop != null) {
-            final int hour = mPickerView.getCurrentHour();
-            final int minute = mPickerView.getCurrentMinute();
+            final int hour = mTimePickerView.getCurrentHour();
+            final int minute = mTimePickerView.getCurrentMinute();
             return createNotification(hour, minute);
         } else {
             return null;

@@ -13,5 +13,9 @@
     <string name="user_logged_out">User logged out</string>
     <string name="unable_to_unregister_push">Unable to unregister from push notifications</string>
     <string name="menu_log_out">Log out</string>
+    <string name="select_route">Select Route</string>
+    <string name="select_stop">Select Stop</string>
+    <string name="select_time_and_stop">Select Time and Stop</string>
+    <string name="missing_route_and_stop">Missing route and stop information.</string>
 
 </resources>

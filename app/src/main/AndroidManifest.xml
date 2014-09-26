@@ -48,9 +48,14 @@
 
         <activity android:name=".NotificationsActivity" />
 
-        <activity android:name=".NotificationAddActivity" />
-        <activity android:name=".RoutesActivity" />
-        <activity android:name=".StopsActivity" />
+        <activity android:name=".NotificationAddActivity"
+            android:label="@string/select_time_and_stop"/>
+
+        <activity android:name=".RoutesActivity"
+            android:label="@string/select_route"/>
+
+        <activity android:name=".StopsActivity"
+            android:label="@string/select_stop"/>
 
         <receiver
             android:name="io.pivotal.android.push.receiver.GcmBroadcastReceiver"

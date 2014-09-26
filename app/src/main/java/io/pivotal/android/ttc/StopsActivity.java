@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 
@@ -16,8 +17,13 @@ public class StopsActivity extends Activity {
     }
 
     public static Stop getStop(final Intent intent) {
-        final StopParcel parcel = intent.getParcelableExtra(Extras.STOP);
-        return parcel.getStop();
+        if (intent != null) {
+            final StopParcel parcel = intent.getParcelableExtra(Extras.STOP);
+            if (parcel != null) {
+                return parcel.getStop();
+            }
+        }
+        return null;
     }
 
     public static void newInstanceForResult(final Fragment fragment, final int requestCode, final RouteParcel parcel) {
@@ -36,6 +42,11 @@ public class StopsActivity extends Activity {
         }
     }
 
+    private void killCancelledInstance() {
+        setResult(RESULT_CANCELED);
+        finish();
+    }
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +60,10 @@ public class StopsActivity extends Activity {
         }
         
         passRouteToFragment(parcel);
+
+        if (getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     private void passRouteToFragment(final RouteParcel parcel) {
@@ -56,5 +71,14 @@ public class StopsActivity extends Activity {
         final FragmentManager manager = getFragmentManager();
         final StopsFragment fragment = (StopsFragment) manager.findFragmentById(id);
         fragment.setRoute(parcel.getRoute());
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId( )== android.R.id.home) {
+            killCancelledInstance();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

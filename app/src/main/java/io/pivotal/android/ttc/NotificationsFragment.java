@@ -112,7 +112,9 @@ public class NotificationsFragment extends Fragment {
 
         if (requestCode == RequestCode.REQUEST_NOTIFICATION && resultCode == Activity.RESULT_OK) {
             final Notification notification = NotificationAddActivity.getNotification(data);
-            mAdapter.addItem(notification);
+            if (notification != null) {
+                mAdapter.addItem(notification);
+            }
         }
     }
 

@@ -16,8 +16,13 @@ public class NotificationAddActivity extends Activity {
     }
 
     public static Notification getNotification(final Intent intent) {
-        final NotificationParcel parcel = intent.getParcelableExtra(Extras.NOTIFICATION);
-        return parcel.getNotification();
+        if (intent != null) {
+            final NotificationParcel parcel = intent.getParcelableExtra(Extras.NOTIFICATION);
+            if (parcel != null) {
+                return parcel.getNotification();
+            }
+        }
+        return null;
     }
 
     public static void newInstanceForResult(final Fragment fragment, final int requestCode) {
@@ -30,6 +35,10 @@ public class NotificationAddActivity extends Activity {
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_add);
+
+        if (getActionBar() != null) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -43,6 +52,9 @@ public class NotificationAddActivity extends Activity {
     public boolean onOptionsItemSelected(final MenuItem item) {
         if (item.getItemId() == R.id.menu_done) {
             setResult();
+            return true;
+        } else if (item.getItemId() == android.R.id.home) {
+            killCancelledInstance();
             return true;
         } else {
             return super.onOptionsItemSelected(item);
@@ -69,5 +81,10 @@ public class NotificationAddActivity extends Activity {
         final Intent intent = new Intent();
         intent.putExtra(Extras.NOTIFICATION, parcel);
         return intent;
+    }
+
+    private void killCancelledInstance() {
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }

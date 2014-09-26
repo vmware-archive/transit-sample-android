@@ -23,9 +23,6 @@ public class RoutesAdapter extends ArrayAdapter<Route> {
 
         final Route route = getItem(position);
 
-        final TextView routeView = (TextView) convertView.findViewById(R.id.route_tag);
-        routeView.setText(route.tag);
-
         final TextView stopView = (TextView) convertView.findViewById(R.id.route_name);
         stopView.setText(route.title);
 

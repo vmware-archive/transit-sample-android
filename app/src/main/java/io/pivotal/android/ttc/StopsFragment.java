@@ -74,8 +74,8 @@ public class StopsFragment extends Fragment implements LoaderManager.LoaderCallb
     }
 
     @Override
-    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-        final Stop stop = (Stop) parent.getItemAtPosition(position);
+    public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+        final Stop stop = (Stop) adapterView.getItemAtPosition(position);
         StopsActivity.killInstanceWithResult(this, stop, new Intent());
     }
 }

@@ -71,8 +71,8 @@ public class RoutesFragment extends Fragment implements LoaderManager.LoaderCall
     }
 
     @Override
-    public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
-        mRoute = (Route) parent.getItemAtPosition(position);
+    public void onItemClick(final AdapterView<?> adapterView, final View view, final int position, final long id) {
+        mRoute = (Route) adapterView.getItemAtPosition(position);
         StopsActivity.newInstanceForResult(this, RequestCode.REQUEST_STOP, new RouteParcel(mRoute));
     }
 
