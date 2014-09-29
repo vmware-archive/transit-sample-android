@@ -4,6 +4,10 @@ import android.test.AndroidTestCase;
 
 import java.util.TimeZone;
 
+import io.pivotal.android.ttc.route.Route;
+import io.pivotal.android.ttc.stop.Stop;
+import io.pivotal.android.ttc.util.TagUtil;
+
 public class TagUtilTest extends AndroidTestCase {
 
     private static final Route TEST_ROUTE = new Route();

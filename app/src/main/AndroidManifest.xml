@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".TTCApplication"
+        android:name=".app.TTCApplication"
         android:icon="@drawable/ic_ttc_launcher"
         android:logo="@drawable/ic_ttc_logo"
         android:label="@string/app_name"
@@ -18,7 +18,7 @@
         android:allowBackup="true">
 
         <activity
-            android:name=".LauncherActivity"
+            android:name=".app.LauncherActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:noHistory="true">
@@ -28,11 +28,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AuthenticationActivity"
+        <activity android:name=".auth.AuthenticationActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:noHistory="true"/>
 
-        <activity android:name=".AuthorizationActivity"
+        <activity android:name=".auth.AuthorizationActivity"
             android:theme="@android:style/Theme.Holo.NoActionBar"
             android:noHistory="true">
             <intent-filter>
@@ -46,15 +46,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".NotificationsActivity" />
+        <activity android:name=".notification.list.NotificationsActivity" />
 
-        <activity android:name=".NotificationAddActivity"
+        <activity android:name=".notification.add.NotificationAddActivity"
             android:label="@string/select_stop_and_time"/>
 
-        <activity android:name=".RoutesActivity"
+        <activity android:name=".route.RoutesActivity"
             android:label="@string/select_route"/>
 
-        <activity android:name=".StopsActivity"
+        <activity android:name=".stop.StopsActivity"
             android:label="@string/select_stop"/>
 
         <receiver
@@ -68,7 +68,7 @@
         </receiver>
 
         <service
-            android:name=".TTCPushService"
+            android:name=".service.TTCPushService"
             android:exported="false" />
     </application>
 

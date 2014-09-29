@@ -1,5 +1,5 @@
 <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/stops_fragment"
-    android:name="io.pivotal.android.ttc.StopsFragment"
+    android:name="io.pivotal.android.ttc.stop.StopsFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
