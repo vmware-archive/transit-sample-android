@@ -1,5 +1,11 @@
 apply plugin: 'android'
 
+ext {
+    // Pivotal CF Mobile Services dependencies
+    dataSdk = 'io.pivotal.android:data:1.0.3'
+    pushSdk = 'io.pivotal.android:push:1.0.2'
+}
+
 android {
     compileSdkVersion 20
     buildToolsVersion "20.0.0"
@@ -9,14 +15,17 @@ android {
         minSdkVersion 14
         targetSdkVersion 20
         versionCode 3
-        versionName "1.0.3"
+        versionName "1.0.4"
+        // Injects the dependency versions into BuildConfig.java so that they
+        // are accessible during runtime.
+        buildConfigField "String", "DATA_SDK_VERSION", "\"${dataSdk}\""
+        buildConfigField "String", "PUSH_SDK_VERSION", "\"${pushSdk}\""
     }
 }
 
 dependencies {
-    compile 'io.pivotal:arca:1.0-beta.3'
-    compile 'io.pivotal.android:push:1.0.2'
-    compile 'io.pivotal.android:data:1.0.3'
+    compile pushSdk
+    compile dataSdk
     compile 'com.google.code.gson:gson:2.2.4'
 
     compile('de.keyboardsurfer.android.widget:crouton:1.8.4') {

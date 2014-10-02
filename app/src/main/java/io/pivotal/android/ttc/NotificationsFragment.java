@@ -122,20 +122,33 @@ public class NotificationsFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(final MenuItem item) {
-        if (item.getItemId() == R.id.menu_add) {
-            addNotification();
-            return true;
-        } else if (item.getItemId() == R.id.menu_logout) {
-            logout();
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+
+            case R.id.menu_add:
+                addNotification();
+                return true;
+
+            case R.id.menu_about:
+                showAboutDialog();
+                return true;
+
+            case R.id.menu_logout:
+                logout();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 
     private void addNotification() {
         final int requestCode = RequestCode.REQUEST_NOTIFICATION;
         NotificationAddActivity.newInstanceForResult(this, requestCode);
+    }
+
+    private void showAboutDialog() {
+        final AboutDialogFragment dialog = new AboutDialogFragment();
+        dialog.show(getFragmentManager(), "AboutDialogFragment");
     }
 
     private void logout() {

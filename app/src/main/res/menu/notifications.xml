@@ -8,8 +8,14 @@
         android:title="@string/menu_add"/>
 
     <item
-        android:id="@+id/menu_logout"
+        android:id="@+id/menu_about"
         android:orderInCategory="101"
+        android:showAsAction="withText"
+        android:title="@string/menu_about"/>
+
+    <item
+        android:id="@+id/menu_logout"
+        android:orderInCategory="102"
         android:showAsAction="withText"
         android:title="@string/menu_log_out"/>
 

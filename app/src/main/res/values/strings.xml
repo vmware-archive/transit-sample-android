@@ -20,5 +20,7 @@
     <string name="stop_already_exists">You already have that stop in your list.</string>
     <string name="notification">Notification</string>
     <string name="select_a_stop">Click to select a stop</string>
+    <string name="menu_about">About</string>
+    <string name="ok">OK</string>
 
 </resources>
