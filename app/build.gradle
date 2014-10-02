@@ -16,7 +16,7 @@ android {
 dependencies {
     compile 'io.pivotal:arca:1.0-beta.3'
     compile 'io.pivotal.android:push:1.0.2'
-    compile 'io.pivotal.android:data:1.0.2'
+    compile 'io.pivotal.android:data:1.0.3'
     compile 'com.google.code.gson:gson:2.2.4'
 
     compile('de.keyboardsurfer.android.widget:crouton:1.8.4') {
