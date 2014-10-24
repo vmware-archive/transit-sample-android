@@ -2,7 +2,7 @@ apply plugin: 'android'
 
 ext {
     // Pivotal CF Mobile Services dependencies
-    dataSdk = 'io.pivotal.android:data:1.0.3'
+    dataSdk = 'io.pivotal.android:data:1.0.4'
     pushSdk = 'io.pivotal.android:push:1.0.2'
 }
 
