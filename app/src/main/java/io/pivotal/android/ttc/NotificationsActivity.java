@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+
 public class NotificationsActivity extends Activity {
 
     public static void newInstance(final Activity activity) {
@@ -23,6 +25,12 @@ public class NotificationsActivity extends Activity {
     protected void onResume() {
         super.onResume();
         clearNotificationsFromStatus();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Crouton.cancelAllCroutons();
     }
 
     private void clearNotificationsFromStatus() {

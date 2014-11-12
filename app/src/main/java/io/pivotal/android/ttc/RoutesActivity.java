@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+
 
 public class RoutesActivity extends Activity {
 
@@ -72,5 +74,11 @@ public class RoutesActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Crouton.cancelAllCroutons();
     }
 }

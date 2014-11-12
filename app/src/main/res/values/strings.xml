@@ -22,5 +22,7 @@
     <string name="select_a_stop">Click to select a stop</string>
     <string name="menu_about">About</string>
     <string name="ok">OK</string>
+    <string name="last_notification">No notifications received yet.</string>
+    <string name="last_notification_label">Last notification received:</string>
 
 </resources>

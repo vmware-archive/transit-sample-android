@@ -12,6 +12,7 @@ import io.pivotal.android.push.service.GcmService;
 public class TTCPushService extends GcmService {
 
     public static final int NOTIFICATION_ID = 1;
+    public static final String NOTIFICATION_RECEIVED = "io.pivotal.android.ttc.TTCPushService.NOTIFICATION_RECEIVED";
     private static final int NOTIFICATION_LIGHTS_ON_MS = 500;
     private static final int NOTIFICATION_LIGHTS_OFF_MS = 1000;
 
@@ -19,8 +20,15 @@ public class TTCPushService extends GcmService {
     public void onReceiveMessage(final Bundle payload) {
         if (payload.containsKey("message")) {
             final String message = payload.getString("message");
+            saveNotification(message);
             sendNotification(message);
+            sendBroadcast();
         }
+    }
+
+    private void saveNotification(String message) {
+        TTCPreferences.setLastNotificationText(this, message.trim());
+        TTCPreferences.setLastNotificationTime(this, System.currentTimeMillis());
     }
 
     private void sendNotification(final String msg) {
@@ -36,6 +44,11 @@ public class TTCPushService extends GcmService {
                 .setContentText(msg);
 
         notificationManager.notify(NOTIFICATION_ID, builder.build());
+    }
+
+    private void sendBroadcast() {
+        final Intent intent = new Intent(NOTIFICATION_RECEIVED);
+        sendBroadcast(intent);
     }
 
 }

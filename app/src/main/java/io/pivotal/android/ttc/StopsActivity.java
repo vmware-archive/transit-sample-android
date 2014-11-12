@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import de.keyboardsurfer.android.widget.crouton.Crouton;
+
 
 public class StopsActivity extends Activity {
 
@@ -80,5 +82,11 @@ public class StopsActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Crouton.cancelAllCroutons();
     }
 }
