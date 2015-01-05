@@ -27,19 +27,19 @@ import io.pivotal.android.push.registration.UnregistrationListener;
 
 public class TTCApi {
 
-    public static final String CLIENT_ID = "cd68e385-c0e8-4740-a563-748e643a2280";
-    public static final String CLIENT_SECRET = "IaioD3Mcj4XU67ySMidiFDNrKwv68RB4Cft2zLrdJHoWcdqjsCSWf1U1EZDR6JKufpNp9NTcBqSxbR6bA95_eg";
-    public static final String AUTHORIZATION_URL = "http://datasync-authentication.demo.vchs.cfms-apps.com";
-    public static final String DATA_SERVICES_URL = "http://datasync-datastore.demo.vchs.cfms-apps.com";
+    public static final String CLIENT_ID = "android-client";
+    public static final String CLIENT_SECRET = "2bf69b535d7ea2f9703ad5529b8cb05188b8dfaaeb9da48242d44373d8838cb7";
+    public static final String AUTHORIZATION_URL = "http://transit-authz.cfapps.io";
+    public static final String DATA_SERVICES_URL = "http://transit-ds.cfapps.io";
     public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
 
     public static final String GCM_SENDER_ID = "960682130245";
     public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";
     public static final String VARIANT_SECRET = "96fe7aae-069f-4551-9e03-6aa77fc7c611";
-    public static final String PUSH_BASE_SERVER_URL = "http://push-notifications.demo.vchs.cfms-apps.com";
-    public static final String DEVICE_ALIAS = "ttc-app";
+    public static final String PUSH_BASE_SERVER_URL = "http://transit-push.cfapps.io";
+    public static final String DEVICE_ALIAS = "TransitAndroid";
 
-    public static final String API_GATEWAY_BASE_URL = "http://transit-gateway.demo.vchs.cfms-apps.com/ttc/routes";
+    public static final String API_GATEWAY_BASE_URL = "http://transit-gateway-app.cfapps.io/ttc/routes";
 
     private static int TEN_SECONDS = 10000;
 
