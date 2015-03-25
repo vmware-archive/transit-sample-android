@@ -34,6 +34,17 @@ public class Notification {
     }
 
     @Override
+    public String toString() {
+        return "Notification{" +
+                "route='" + route + '\'' +
+                ", stop='" + stop + '\'' +
+                ", time='" + time + '\'' +
+                ", tag='" + tag + '\'' +
+                ", enabled=" + enabled +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         int result = route != null ? route.hashCode() : 0;
         result = 31 * result + (stop != null ? stop.hashCode() : 0);

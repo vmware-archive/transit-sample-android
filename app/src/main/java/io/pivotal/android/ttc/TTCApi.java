@@ -21,8 +21,9 @@ import java.util.Set;
 
 import io.pivotal.android.data.DataStore;
 import io.pivotal.android.data.DataStoreParameters;
+import io.pivotal.android.data.util.Logger;
 import io.pivotal.android.push.Push;
-import io.pivotal.android.push.RegistrationParameters;
+import io.pivotal.android.push.registration.RegistrationListener;
 import io.pivotal.android.push.registration.UnregistrationListener;
 
 public class TTCApi {
@@ -33,10 +34,6 @@ public class TTCApi {
     public static final String DATA_SERVICES_URL = "http://transit-ds.cfapps.io";
     public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
 
-    public static final String GCM_SENDER_ID = "960682130245";
-    public static final String VARIANT_UUID = "665d74d8-32b8-4521-92db-62f6979dbeea";
-    public static final String VARIANT_SECRET = "96fe7aae-069f-4551-9e03-6aa77fc7c611";
-    public static final String PUSH_BASE_SERVER_URL = "http://transit-push.cfapps.io";
     public static final String DEVICE_ALIAS = "TransitAndroid";
 
     public static final String API_GATEWAY_BASE_URL = "http://transit-gateway-app.cfapps.io/ttc/routes";
@@ -44,17 +41,21 @@ public class TTCApi {
     private static int TEN_SECONDS = 10000;
 
     public static void setupPush(final Context context, Set<String> tags) {
-        Push.getInstance(context).startRegistration(getPushParameters(tags));
+        Push.getInstance(context).startRegistration(DEVICE_ALIAS, tags, new RegistrationListener() {
+            @Override
+            public void onRegistrationComplete() {
+                Logger.i("Push registration complete");
+            }
+
+            @Override
+            public void onRegistrationFailed(String reason) {
+                Logger.e("Push registration failed: " + reason);
+            }
+        });
     }
 
     public static void pushUnregister(final Context context, UnregistrationListener listener) {
-        Push.getInstance(context).startUnregistration(getPushParameters(null), listener);
-    }
-
-    private static RegistrationParameters getPushParameters(Set<String> tags) {
-        return new RegistrationParameters(
-                GCM_SENDER_ID, VARIANT_UUID, VARIANT_SECRET, DEVICE_ALIAS, PUSH_BASE_SERVER_URL, tags
-        );
+        Push.getInstance(context).startUnregistration(listener);
     }
 
     public static void setupData(final Context context) {

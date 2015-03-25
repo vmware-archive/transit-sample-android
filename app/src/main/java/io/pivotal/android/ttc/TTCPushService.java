@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
 import io.pivotal.android.push.service.GcmService;
+import io.pivotal.android.push.util.Logger;
 
 public class TTCPushService extends GcmService {
 
@@ -18,6 +19,7 @@ public class TTCPushService extends GcmService {
 
     @Override
     public void onReceiveMessage(final Bundle payload) {
+        Logger.d("Received push notification: " + payload);
         if (payload.containsKey("message")) {
             final String message = payload.getString("message");
             saveNotification(message);

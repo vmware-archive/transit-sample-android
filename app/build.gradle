@@ -3,7 +3,7 @@ apply plugin: 'android'
 ext {
     // Pivotal CF Mobile Services dependencies
     dataSdk = 'io.pivotal.android:data:1.0.4'
-    pushSdk = 'io.pivotal.android:push:1.0.2'
+    pushSdk = 'io.pivotal.android:push:1.0.4'
 }
 
 android {
@@ -14,8 +14,8 @@ android {
         applicationId "io.pivotal.android.ttc"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 6
-        versionName "1.0.6"
+        versionCode 7
+        versionName "1.0.7"
         // Injects the dependency versions into BuildConfig.java so that they
         // are accessible during runtime.
         buildConfigField "String", "DATA_SDK_VERSION", "\"${dataSdk}\""
@@ -28,9 +28,12 @@ dependencies {
     compile dataSdk
     compile 'com.google.code.gson:gson:2.2.4'
 
-    compile('de.keyboardsurfer.android.widget:crouton:1.8.4') {
+    compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {
         exclude group: 'com.google.android', module: 'support-v4'
     }
+
+//    compile 'com.google.android.gms:play-services-base:6.5.87'
+//    compile 'com.google.android.gms:play-services-location:6.5.87'
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }

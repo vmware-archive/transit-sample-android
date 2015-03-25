@@ -37,7 +37,7 @@ public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
     }
 
     private Set<String> getTagsFromNotifications() {
-        final HashSet<String> tags = new HashSet<String>();
+        final Set<String> tags = new HashSet<>();
         final List<Notification> notifications = getItems();
         for (final Notification notification : notifications) {
             if (notification.enabled) {
