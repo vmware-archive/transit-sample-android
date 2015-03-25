@@ -9,6 +9,7 @@ import android.support.v4.app.NotificationCompat;
 
 import io.pivotal.android.push.service.GcmService;
 import io.pivotal.android.push.util.Logger;
+import io.pivotal.android.ttc.activities.NotificationsActivity;
 
 public class TTCPushService extends GcmService {
 

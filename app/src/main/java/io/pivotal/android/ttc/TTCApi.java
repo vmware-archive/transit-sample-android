@@ -19,23 +19,18 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.Set;
 
-import io.pivotal.android.data.DataStore;
-import io.pivotal.android.data.DataStoreParameters;
-import io.pivotal.android.data.util.Logger;
+import io.pivotal.android.auth.Auth;
 import io.pivotal.android.push.Push;
 import io.pivotal.android.push.registration.RegistrationListener;
 import io.pivotal.android.push.registration.UnregistrationListener;
+import io.pivotal.android.push.util.Logger;
+import io.pivotal.android.ttc.activities.NotificationsActivity;
+import io.pivotal.android.ttc.models.Route;
+import io.pivotal.android.ttc.models.Stop;
 
 public class TTCApi {
 
-    public static final String CLIENT_ID = "android-client";
-    public static final String CLIENT_SECRET = "2bf69b535d7ea2f9703ad5529b8cb05188b8dfaaeb9da48242d44373d8838cb7";
-    public static final String AUTHORIZATION_URL = "http://transit-authz.cfapps.io";
-    public static final String DATA_SERVICES_URL = "http://transit-ds.cfapps.io";
-    public static final String REDIRECT_URL = "io.pivotal.android.ttc://identity/oauth2callback";
-
     public static final String DEVICE_ALIAS = "TransitAndroid";
-
     public static final String API_GATEWAY_BASE_URL = "http://transit-gateway-app.cfapps.io/ttc/routes";
 
     private static int TEN_SECONDS = 10000;
@@ -58,18 +53,8 @@ public class TTCApi {
         Push.getInstance(context).startUnregistration(listener);
     }
 
-    public static void setupData(final Context context) {
-        DataStore.getInstance().initialize(context, new DataStoreParameters(
-                CLIENT_ID, CLIENT_SECRET, AUTHORIZATION_URL, REDIRECT_URL, DATA_SERVICES_URL
-        ));
-    }
-
-    public static void authenticate(Activity activity) {
-        DataStore.getInstance().obtainAuthorization(activity);
-    }
-
     public static void dataLogout(final Context context) {
-        DataStore.getInstance().clearAuthorization(context);
+        Auth.logout(context);
     }
 
     public static void fullLogoutFromActivity(final Activity activity) {
@@ -98,7 +83,7 @@ public class TTCApi {
     public static void dataLogoutOnlyFromActivity(final Activity activity) {
         TTCPreferences.setIsAuthenticated(activity, false);
         TTCApi.dataLogout(activity);
-        AuthenticationActivity.newInstance(activity);
+        NotificationsActivity.newInstance(activity);
         activity.finish();
     }
 

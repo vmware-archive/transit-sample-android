@@ -1,10 +1,13 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.fragments;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
+
+import io.pivotal.android.ttc.BuildConfig;
+import io.pivotal.android.ttc.R;
 
 public class AboutDialogFragment extends DialogFragment {
 

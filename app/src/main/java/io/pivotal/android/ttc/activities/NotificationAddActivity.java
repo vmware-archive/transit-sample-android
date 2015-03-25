@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.fragments.NotificationAddFragment;
+import io.pivotal.android.ttc.models.Notification;
+import io.pivotal.android.ttc.models.NotificationParcel;
 
 public class NotificationAddActivity extends Activity {
 

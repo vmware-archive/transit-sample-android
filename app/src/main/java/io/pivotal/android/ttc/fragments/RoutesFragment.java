@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -15,6 +15,14 @@ import android.widget.Toast;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.activities.RoutesActivity;
+import io.pivotal.android.ttc.activities.StopsActivity;
+import io.pivotal.android.ttc.adapters.RoutesAdapter;
+import io.pivotal.android.ttc.loaders.RoutesLoader;
+import io.pivotal.android.ttc.models.Route;
+import io.pivotal.android.ttc.models.RouteParcel;
+import io.pivotal.android.ttc.models.Stop;
 
 public class RoutesFragment extends Fragment implements LoaderManager.LoaderCallbacks<Route.List>, AdapterView.OnItemClickListener {
 

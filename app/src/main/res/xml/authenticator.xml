@@ -1,0 +1,5 @@
+<account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="io.pivotal.android.ttc.account"
+    android:icon="@drawable/ic_ttc_logo"
+    android:smallIcon="@drawable/ic_ttc_logo"
+    android:label="@string/app_name" />

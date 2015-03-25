@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;

@@ -2,7 +2,8 @@ apply plugin: 'android'
 
 ext {
     // Pivotal CF Mobile Services dependencies
-    dataSdk = 'io.pivotal.android:data:1.0.4'
+    dataSdk = 'io.pivotal.android:data:1.1.0'
+    authSdk = 'io.pivotal.android:auth:1.0.0'
     pushSdk = 'io.pivotal.android:push:1.0.4'
 }
 
@@ -26,6 +27,7 @@ android {
 dependencies {
     compile pushSdk
     compile dataSdk
+    compile authSdk
     compile 'com.google.code.gson:gson:2.2.4'
 
     compile('de.keyboardsurfer.android.widget:crouton:1.8.5@aar') {

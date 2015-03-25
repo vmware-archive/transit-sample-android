@@ -1,21 +1,33 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.activities;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.models.Route;
+import io.pivotal.android.ttc.models.RouteParcel;
+import io.pivotal.android.ttc.models.Stop;
+import io.pivotal.android.ttc.models.StopParcel;
 
-
-public class StopsActivity extends Activity {
+public class RoutesActivity extends Activity {
 
     private static interface Extras {
         public static final String ROUTE = "route";
         public static final String STOP = "stop";
+    }
+
+    public static Route getRoute(final Intent intent) {
+        if (intent != null) {
+            final RouteParcel parcel = intent.getParcelableExtra(Extras.ROUTE);
+            if (parcel != null) {
+                return parcel.getRoute();
+            }
+        }
+        return null;
     }
 
     public static Stop getStop(final Intent intent) {
@@ -28,16 +40,17 @@ public class StopsActivity extends Activity {
         return null;
     }
 
-    public static void newInstanceForResult(final Fragment fragment, final int requestCode, final RouteParcel parcel) {
+    public static void newInstanceForResult(final Fragment fragment, final int requestCode) {
         final Activity activity = fragment.getActivity();
-        final Intent intent = new Intent(activity, StopsActivity.class);
-        intent.putExtra(Extras.ROUTE, parcel);
+        final Intent intent = new Intent(activity, RoutesActivity.class);
         fragment.startActivityForResult(intent, requestCode);
     }
 
-    public static void killInstanceWithResult(final Fragment fragment, final Stop stop, final Intent intent) {
+    public static void killInstanceWithResult(final Fragment fragment, final Route route, final Stop stop) {
         final Activity activity = fragment.getActivity();
-        if (activity instanceof StopsActivity) {
+        if (activity instanceof  RoutesActivity) {
+            final Intent intent = new Intent();
+            intent.putExtra(Extras.ROUTE, new RouteParcel(route));
             intent.putExtra(Extras.STOP, new StopParcel(stop));
             activity.setResult(RESULT_OK, intent);
             activity.finish();
@@ -52,32 +65,15 @@ public class StopsActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stops);
-
-        final RouteParcel parcel = getIntent().getParcelableExtra(Extras.ROUTE);
-        if (parcel == null) {
-            Toast.makeText(this, "Route cannot be null.", Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
-        
-        passRouteToFragment(parcel);
-
+        setContentView(R.layout.activity_routes);
         if (getActionBar() != null) {
             getActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
-    private void passRouteToFragment(final RouteParcel parcel) {
-        final int id = R.id.stops_fragment;
-        final FragmentManager manager = getFragmentManager();
-        final StopsFragment fragment = (StopsFragment) manager.findFragmentById(id);
-        fragment.setRoute(parcel.getRoute());
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId( )== android.R.id.home) {
+        if (item.getItemId()==  android.R.id.home) {
             killCancelledInstance();
             return true;
         }

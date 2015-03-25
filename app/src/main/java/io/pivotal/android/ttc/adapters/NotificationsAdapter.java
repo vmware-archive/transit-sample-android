@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -16,10 +16,15 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import io.pivotal.android.ttc.Const;
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.TTCApi;
+import io.pivotal.android.ttc.models.Notification;
+
 public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
 
-    public NotificationsAdapter(final Context context, final UnauthorizedListener unauthorizedListener) {
-        super(context, unauthorizedListener);
+    public NotificationsAdapter(final Context context) {
+        super(context);
     }
 
     protected Type getListType() {

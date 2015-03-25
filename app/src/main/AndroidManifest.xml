@@ -17,44 +17,21 @@
         android:theme="@style/AppTheme"
         android:allowBackup="true">
 
-        <activity
-            android:name=".LauncherActivity"
-            android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:noHistory="true">
+        <activity android:name=".activities.NotificationsActivity"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".AuthenticationActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:noHistory="true"/>
-
-        <activity android:name=".AuthorizationActivity"
-            android:theme="@android:style/Theme.Holo.NoActionBar"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:host="identity" />
-                <data android:scheme="io.pivotal.android.ttc" />
-                <data android:pathPrefix="/oauth2callback" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".NotificationsActivity" />
-
-        <activity android:name=".NotificationAddActivity"
+        <activity android:name=".activities.NotificationAddActivity"
             android:label="@string/select_stop_and_time"/>
 
-        <activity android:name=".RoutesActivity"
+        <activity android:name=".activities.RoutesActivity"
             android:label="@string/select_route"/>
 
-        <activity android:name=".StopsActivity"
+        <activity android:name=".activities.StopsActivity"
             android:label="@string/select_stop"/>
 
         <receiver

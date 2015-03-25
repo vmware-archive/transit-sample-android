@@ -1,9 +1,12 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.TimeZone;
+
+import io.pivotal.android.ttc.models.Route;
+import io.pivotal.android.ttc.models.Stop;
 
 public class TagUtil {
 

@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.fragments;
 
 import android.animation.Animator;
 import android.app.Activity;
@@ -24,6 +24,14 @@ import java.util.List;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
+import io.pivotal.android.ttc.Const;
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.TTCApi;
+import io.pivotal.android.ttc.TTCPreferences;
+import io.pivotal.android.ttc.TTCPushService;
+import io.pivotal.android.ttc.activities.NotificationAddActivity;
+import io.pivotal.android.ttc.adapters.NotificationsAdapter;
+import io.pivotal.android.ttc.models.Notification;
 
 public class NotificationsFragment extends Fragment {
 
@@ -61,18 +69,7 @@ public class NotificationsFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        final RemoteAdapter.UnauthorizedListener unauthorizedListener = new RemoteAdapter.UnauthorizedListener() {
-
-            @Override
-            public void onUnauthorized() {
-                // The user's access token must have expired so log the user out of the data SDK.
-                // Note that we want push notifications to remain registered so that the user
-                // will still know when their stops are imminent.
-                TTCApi.dataLogoutOnlyFromActivity(getActivity());
-            }
-        };
-
-        mAdapter = new NotificationsAdapter(getActivity(), unauthorizedListener) {
+        mAdapter = new NotificationsAdapter(getActivity()) {
 
             @Override
             public void refresh() {

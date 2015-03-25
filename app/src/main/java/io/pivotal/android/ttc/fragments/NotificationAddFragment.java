@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -9,6 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.TimePicker;
+
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.activities.RoutesActivity;
+import io.pivotal.android.ttc.models.Notification;
+import io.pivotal.android.ttc.models.Route;
+import io.pivotal.android.ttc.models.RouteParcel;
+import io.pivotal.android.ttc.models.Stop;
+import io.pivotal.android.ttc.models.StopParcel;
+import io.pivotal.android.ttc.util.TagUtil;
 
 public class NotificationAddFragment extends Fragment {
 

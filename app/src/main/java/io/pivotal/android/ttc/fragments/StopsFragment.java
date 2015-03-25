@@ -1,4 +1,4 @@
-package io.pivotal.android.ttc;
+package io.pivotal.android.ttc.fragments;
 
 import android.app.Fragment;
 import android.app.LoaderManager;
@@ -14,6 +14,12 @@ import android.widget.Toast;
 
 import de.keyboardsurfer.android.widget.crouton.Crouton;
 import de.keyboardsurfer.android.widget.crouton.Style;
+import io.pivotal.android.ttc.R;
+import io.pivotal.android.ttc.activities.StopsActivity;
+import io.pivotal.android.ttc.adapters.StopsAdapter;
+import io.pivotal.android.ttc.loaders.StopsLoader;
+import io.pivotal.android.ttc.models.Route;
+import io.pivotal.android.ttc.models.Stop;
 
 public class StopsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Stop.List>, AdapterView.OnItemClickListener {
 
