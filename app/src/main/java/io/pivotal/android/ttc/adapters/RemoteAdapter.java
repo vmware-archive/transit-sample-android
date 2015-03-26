@@ -152,7 +152,7 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
                 } else if (keyValueResponse.isUnauthorized()) {
                     Toast.makeText(mContext, "Fetch Failure: Not Authorized", Toast.LENGTH_SHORT).show();
                 } else if (keyValueResponse.isFailure()) {
-                    Toast.makeText(mContext, "Fetch Failure: " + keyValueResponse.error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(mContext, "Your data has been modified remotely, please refresh and make your changes again.", Toast.LENGTH_LONG).show();
                 }
 
             }
