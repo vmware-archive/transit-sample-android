@@ -217,6 +217,10 @@ public class NotificationsFragment extends Fragment {
                 addNotification();
                 return true;
 
+            case R.id.menu_refresh:
+                mAdapter.refresh();
+                return true;
+
             case R.id.menu_about:
                 showAboutDialog();
                 return true;

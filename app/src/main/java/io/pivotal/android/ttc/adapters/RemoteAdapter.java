@@ -6,6 +6,14 @@ import android.widget.BaseAdapter;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -137,9 +145,8 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
                     Log.d(Const.TAG, "Response value : " + keyValueResponse.object.value);
 
                     final String json = keyValueResponse.object.value;
-                    final List<T> items;
-
-                    items = new Gson().fromJson(json, getListType());
+                    final Gson gson = new GsonBuilder().registerTypeAdapter(boolean.class, new BooleanSerializer()).create();
+                    final List<T> items = gson.fromJson(json, getListType());
                     Log.v(Const.TAG, "sync/refresh success");
                     setItems(items);
                 } else if (keyValueResponse.isUnauthorized()) {
@@ -151,4 +158,22 @@ public abstract class RemoteAdapter<T> extends BaseAdapter {
             }
         };
     }
+
+    private static class BooleanSerializer implements JsonSerializer<Boolean>, JsonDeserializer<Boolean> {
+
+        @Override
+        public JsonElement serialize(Boolean arg0, Type arg1, JsonSerializationContext arg2) {
+            return new JsonPrimitive(arg0 ? 1 : 0);
+        }
+
+        @Override
+        public Boolean deserialize(JsonElement arg0, Type arg1, JsonDeserializationContext arg2) throws JsonParseException {
+            try {
+                return arg0.getAsInt() == 1;
+            } catch (NumberFormatException e) {
+                return arg0.getAsBoolean();
+            }
+        }
+    }
+
 }

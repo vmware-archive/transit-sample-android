@@ -21,6 +21,7 @@ android {
         // are accessible during runtime.
         buildConfigField "String", "DATA_SDK_VERSION", "\"${dataSdk}\""
         buildConfigField "String", "PUSH_SDK_VERSION", "\"${pushSdk}\""
+        buildConfigField "String", "AUTH_SDK_VERSION", "\"${authSdk}\""
     }
 }
 

@@ -24,5 +24,6 @@
     <string name="ok">OK</string>
     <string name="last_notification">No notifications received yet.</string>
     <string name="last_notification_label">Last notification received:</string>
+    <string name="menu_refresh">Refresh</string>
 
 </resources>

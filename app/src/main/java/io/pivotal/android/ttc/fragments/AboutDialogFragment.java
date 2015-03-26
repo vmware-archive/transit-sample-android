@@ -30,6 +30,8 @@ public class AboutDialogFragment extends DialogFragment {
         sb.append("Application version: ");
         sb.append(BuildConfig.VERSION_NAME);
         sb.append("\n\nPivotal CF Mobile Services\ncomponent versions:\n\n  ");
+        sb.append(BuildConfig.AUTH_SDK_VERSION);
+        sb.append("\n  ");
         sb.append(BuildConfig.DATA_SDK_VERSION);
         sb.append("\n  ");
         sb.append(BuildConfig.PUSH_SDK_VERSION);
