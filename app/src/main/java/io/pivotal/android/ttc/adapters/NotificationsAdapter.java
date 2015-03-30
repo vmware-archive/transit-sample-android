@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -20,11 +22,19 @@ import io.pivotal.android.ttc.Const;
 import io.pivotal.android.ttc.R;
 import io.pivotal.android.ttc.TTCApi;
 import io.pivotal.android.ttc.models.Notification;
+import io.pivotal.android.ttc.models.RouteTitleModel;
+import io.pivotal.android.ttc.util.RouteUtil;
 
 public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
 
     public NotificationsAdapter(final Context context) {
         super(context);
+
+        mTextDrawableBuilder = TextDrawable.builder()
+                .beginConfig()
+                .withBorder(4)
+                .endConfig()
+                .rect();
     }
 
     protected Type getListType() {
@@ -32,6 +42,8 @@ public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
     }
 
     public abstract void onItemLongTouched(Notification notification);
+
+    protected final TextDrawable.IBuilder mTextDrawableBuilder;
 
     @Override
     public void onItemsChanged() {
@@ -64,8 +76,21 @@ public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
 
         Log.i(Const.TAG, "Notification: " + notification);
 
+        RouteTitleModel routeTitle = RouteUtil.parseRouteTitle(notification.route);
+
+        int imageColor;
+        if (position % 2 == 0) {
+            imageColor = getContext().getResources().getColor(R.color.ttc_red);
+        } else {
+            imageColor = getContext().getResources().getColor(R.color.ttc_blue);
+        }
+
+        final ImageView routeNumberView = (ImageView) convertView.findViewById(R.id.notification_route_number);
+        TextDrawable textDrawable = mTextDrawableBuilder.build(routeTitle.getRouteNumber(), imageColor);
+        routeNumberView.setImageDrawable(textDrawable);
+
         final TextView routeView = (TextView) convertView.findViewById(R.id.notification_route);
-        routeView.setText(notification.route);
+        routeView.setText(routeTitle.getRouteName());
 
         final TextView stopView = (TextView) convertView.findViewById(R.id.notification_stop);
         stopView.setText(notification.stop);
