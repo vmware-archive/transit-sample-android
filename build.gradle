@@ -13,5 +13,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
         maven {url 'https://maven.xtremelabs.com/artifactory/libs-release-local'}
+        maven {url 'http://dl.bintray.com/amulyakhare/maven'}
     }
 }
