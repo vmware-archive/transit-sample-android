@@ -15,6 +15,7 @@
             android:id="@+id/notification_add_stop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:lineSpacingMultiplier="1.2"
             android:text="Click to select a stop"
             android:gravity="center"/>
 

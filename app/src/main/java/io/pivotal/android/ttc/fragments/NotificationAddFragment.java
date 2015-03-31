@@ -81,7 +81,7 @@ public class NotificationAddFragment extends Fragment {
 
     private void showRouteAndStop() {
         if (mRoute != null && mStop != null) {
-            mRouteAndStopTextView.setText(mRoute.title + "\n\n" + mStop.title);
+            mRouteAndStopTextView.setText(mRoute.title + "\n" + mStop.title);
         } else {
             mRouteAndStopTextView.setText(R.string.select_a_stop);
         }
