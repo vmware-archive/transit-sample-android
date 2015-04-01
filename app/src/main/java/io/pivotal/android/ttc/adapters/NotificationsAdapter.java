@@ -49,8 +49,8 @@ public abstract class NotificationsAdapter extends RemoteAdapter<Notification> {
     public void onItemsChanged() {
         final Set<String> tags = getTagsFromNotifications();
 
-        Log.v(Const.TAG, "setupPush: " + tags);
-        TTCApi.setupPush(getContext(), tags);
+        Log.v(Const.TAG, "updatePushTags: " + tags);
+        TTCApi.updatePushTags(getContext(), tags);
     }
 
     private Set<String> getTagsFromNotifications() {

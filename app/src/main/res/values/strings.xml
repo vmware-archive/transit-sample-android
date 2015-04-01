@@ -16,6 +16,7 @@
     <string name="select_route">Select Route</string>
     <string name="select_stop">Select Stop</string>
     <string name="select_stop_and_time">Select Stop and Time</string>
+    <string name="authentication">Authentication</string>
     <string name="empty_notification_instructions">Your list of notifications is empty. Press the \'Add\' button above to add a notification.</string>
     <string name="stop_already_exists">You already have that stop in your list.</string>
     <string name="notification">Notification</string>
@@ -25,5 +26,7 @@
     <string name="last_notification">No notifications received yet.</string>
     <string name="last_notification_label">Last notification received:</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="auth_account">Account</string>
+    <string name="auth_loading">Loading...</string>
 
 </resources>

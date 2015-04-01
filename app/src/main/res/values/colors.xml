@@ -2,7 +2,7 @@
 <resources>
     <color name="app_primary">#E92127</color>
     <color name="app_secondary">#C40100</color>
-
+    <color name="light_gray">#BFBFBF</color>
     <color name="ttc_red">#E92127</color>
     <color name="ttc_blue">#0098F0</color>
 </resources>

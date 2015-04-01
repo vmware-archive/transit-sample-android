@@ -35,7 +35,7 @@ public class TTCApi {
 
     private static int TEN_SECONDS = 10000;
 
-    public static void setupPush(final Context context, Set<String> tags) {
+    public static void updatePushTags(final Context context, Set<String> tags) {
         Push.getInstance(context).startRegistration(DEVICE_ALIAS, tags, new RegistrationListener() {
             @Override
             public void onRegistrationComplete() {

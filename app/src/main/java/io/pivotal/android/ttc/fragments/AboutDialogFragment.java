@@ -4,7 +4,12 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
+import android.content.res.AssetManager;
+import android.content.res.Resources;
 import android.os.Bundle;
+
+import java.io.InputStream;
+import java.util.Properties;
 
 import io.pivotal.android.ttc.BuildConfig;
 import io.pivotal.android.ttc.R;
@@ -35,6 +40,27 @@ public class AboutDialogFragment extends DialogFragment {
         sb.append(BuildConfig.DATA_SDK_VERSION);
         sb.append("\n  ");
         sb.append(BuildConfig.PUSH_SDK_VERSION);
+
+        try {
+            Resources resources = this.getResources();
+            AssetManager assetManager = resources.getAssets();
+            Properties props = new Properties();
+            InputStream inputStream = assetManager.open("pivotal.properties");
+            props.load(inputStream);
+
+            String tokenUrl = props.getProperty("pivotal.push.serviceUrl");
+            String authUrl = props.getProperty("pivotal.auth.authorizeUrl");
+            String serviceUrl = props.getProperty("pivotal.data.serviceUrl");
+            sb.append("\n\nPush Url: \n ");
+            sb.append(tokenUrl);
+            sb.append("\n\nAuthorize Url: \n ");
+            sb.append(authUrl);
+            sb.append("\n\nData Service Url: \n ");
+            sb.append(serviceUrl);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return sb.toString();
     }
 }
