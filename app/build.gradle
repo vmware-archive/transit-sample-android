@@ -15,8 +15,8 @@ android {
         applicationId "io.pivotal.android.ttc"
         minSdkVersion 14
         targetSdkVersion 21
-        versionCode 7
-        versionName "1.0.7"
+        versionCode 8
+        versionName "1.0.8-168795e"
         // Injects the dependency versions into BuildConfig.java so that they
         // are accessible during runtime.
         buildConfigField "String", "DATA_SDK_VERSION", "\"${dataSdk}\""
